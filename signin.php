@@ -158,7 +158,7 @@ if (!empty($_POST['submit_login']) && !empty($_POST['email_login']) && !empty($_
 
                 <div class="field is-grouped">
                     <div class="control">
-                        <input type="submit" value="Login !" name="submit_login" class="button is-primary">
+                        <input type="submit" value="Login" name="submit_login" class="button is-primary">
                     </div>
                 </div>
 

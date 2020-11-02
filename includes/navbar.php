@@ -52,7 +52,7 @@
                 ?>
             <div class=" navbar-item">
                 <div class="buttons">
-                    <a class="button is-primary">
+                    <a class="button is-primary" href="signin.php">
                         <strong>Sign in</strong>
                     </a>
                 </div>
