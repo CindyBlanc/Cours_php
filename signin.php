@@ -1,54 +1,19 @@
 <?php
 require 'includes/header.php';
-require 'includes/navbar.php';
+$title = 'Signin - Stuliday';
 
 if (!empty($_POST['submit_signup']) && !empty($_POST['email_signup']) && !empty($_POST['password1_signup'])) {
     $pass_su = htmlspecialchars($_POST['password1_signup']);
     $repass_su = htmlspecialchars($_POST['password2_signup']);
     $email_su = htmlspecialchars($_POST['email_signup']);
 
-    $sql = "SELECT * FROM users WHERE email = '{$email_su}'";
-    $res = $conn->query($sql);
-    $count = $res->fetchColumn();
-
-    if (!$count) {
-        if ($pass_su === $repass_su) {
-            try {
-                $pass_su = password_hash($pass_su, PASSWORD_DEFAULT);
-                $sth = $conn->prepare('INSERT INTO users (email,password) VALUES (:email, :password)');
-                $sth->bindValue('email', $email_su);
-                $sth->bindValue('password', $pass_su);
-                $sth->execute();
-                echo "L'utilisateur a bien été enregistré !";
-            } catch (PDOException $e) {
-                echo 'Error'.$e->getMEssage();
-            }
-        } else {
-            echo '<div class="notification is-danger is-light"><button class="delete"></button> Les mots de passe ne concordent pas !';
-        }
-    } elseif ($count > 0) {
-        echo '<div class="notification is-danger is-light"><button class="delete"></button> Cette adresse existe déjà ! </div>';
-    }
+    inscription($email_su, $pass_su, $repass_su);
 }
 if (!empty($_POST['submit_login']) && !empty($_POST['email_login']) && !empty($_POST['password_login'])) {
     $pass_login = htmlspecialchars($_POST['password_login']);
     $email_login = htmlspecialchars($_POST['email_login']);
 
-    $sql = "SELECT * FROM users WHERE email = '{$email_login}'";
-    $res = $conn->query($sql);
-    $user = $res->fetch(PDO::FETCH_ASSOC);
-    var_dump($user);
-    if ($user) {
-        $db_pass = $user['password'];
-        if (password_verify($pass_login, $db_pass)) {
-            $_SESSION['email'] = $user['email'];
-            $_SESSION['id'] = $user['id'];
-        } else {
-            echo '<div class="notification is-danger is-light"><button class="delete"></button>Mot de passe erroné !</div>';
-        }
-    } else {
-        echo '<div class="notification is-danger is-light"><button class="delete"></button> Cet utilisateur n\'existe pas ! </div>';
-    }
+    connexion($email_login, $pass_login);
 }
 ?>
 
@@ -158,7 +123,8 @@ if (!empty($_POST['submit_login']) && !empty($_POST['email_login']) && !empty($_
 
                 <div class="field is-grouped">
                     <div class="control">
-                        <input type="submit" value="Login" name="submit_login" class="button is-primary">
+                        <button type="submit" class="button is-primary" name="submit_login"
+                            value="Login">Connexion</button>
                     </div>
                 </div>
 

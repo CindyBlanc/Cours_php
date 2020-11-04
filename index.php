@@ -1,7 +1,7 @@
 <?php
 
 require 'includes/header.php';
-require 'includes/navbar.php';
+$title = 'Accueil - Stuliday';
 
   // if (!isset($content)) {
   //     $content = '
