@@ -52,14 +52,12 @@ function connexion($email_login, $pass_login)
 
 // Fonction poutr testpost.php
 
-function ajoutProduits($title, $content, $address, $price, $city, $author)
+function ajoutProduits($title, $content, $address, $city, $price, $author)
 {
     global $conn;
-    // Vérification du prix (doit être un entier, et inférieur à 1 million d'euros)
+
     if (is_int($price) && $price > 0 && $price < 1000000) {
-        // Utilisation du try/catch pour capturer les erreurs PDO/SQL
         try {
-            // Création de la requête avec tous les champs du formulaire
             $sth = $conn->prepare('INSERT INTO adverts (title,content,address,city,price,author) VALUES (:title, :content, :address, :city, :price, :author)');
             $sth->bindValue(':title', $title, PDO::PARAM_STR);
             $sth->bindValue(':content', $content, PDO::PARAM_STR);
@@ -68,9 +66,8 @@ function ajoutProduits($title, $content, $address, $price, $city, $author)
             $sth->bindValue(':price', $price, PDO::PARAM_INT);
             $sth->bindValue(':author', $author, PDO::PARAM_INT);
 
-            // Affichage conditionnel du message de réussite
             if ($sth->execute()) {
-                echo "<div class='alert alert-success'> Votre article a été ajouté à la base de données </div>";
+                echo "<div class='alert alert-success'> Votre annonce a été ajouté à la base de données </div>";
                 header('Location: profil.php?');
             }
         } catch (PDOException $e) {

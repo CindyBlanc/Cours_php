@@ -28,7 +28,7 @@ $adverts = $res->fetchAll();
                         name="ad_price" required>
                 </div>
                 <div class="form-group">
-                    <label for="InputPrice">Adress</label>
+                    <label for="InputAddress">Address</label>
                     <input type="text" class="form-control" id="InputPrice" placeholder="Ville où l'article est situé"
                         name="ad_city" required>
                 </div>
