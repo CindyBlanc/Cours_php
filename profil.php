@@ -9,30 +9,30 @@ $title = 'Profil - Stuliday';
     <h2 class="">Mon Profil : </h2>
     <div class="column is-half">
         <div class="field">
-            <label class="label">Name</label>
+            <label class="label">Fullname</label>
             <div class="control">
-                <input class="input is-success" type="text" placeholder="Text input">
+                <input class="input is-success" type="text">
             </div>
         </div>
 
         <div class="field">
-            <label class="label">Username</label>
+            <label class="label">Address</label>
             <div class="control has-icons-left has-icons-right">
-                <input class="input is-success" type="text" placeholder="Text input" value="bulma">
-            </div>
-        </div>
-
-        <div class="field">
-            <label class="label">Adress</label>
-            <div class="control has-icons-left has-icons-right">
-                <input class="input is-success" type="text" placeholder="Your adress" value="">
+                <input class="input is-success" type="text">
             </div>
         </div>
 
         <div class="field">
             <label class="label">Email</label>
             <div class="control has-icons-left has-icons-right">
-                <input class="input is-success" type="email" placeholder="Email input" value="hello@">
+                <input class="input is-success" type="text">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control has-icons-left has-icons-right">
+                <input class="input is-success" type="email">
             </div>
         </div>
 

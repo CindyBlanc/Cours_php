@@ -55,7 +55,7 @@ require 'includes/functions.php';
                         <a class="navbar-item" href="profil.php">
                             Profile page
                         </a>
-                        <a class="navbar-item" href="post.php">
+                        <a class="navbar-item" href="advert.php">
                             Create a new ad
                         </a>
                         <hr class="navbar-divider">

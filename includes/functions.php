@@ -50,28 +50,79 @@ function connexion($email_login, $pass_login)
     }
 }
 
-// Fonction poutr testpost.php
-
-function ajoutProduits($title, $content, $address, $city, $price, $author)
+function adAdverts($title, $content, $address, $city, $price, $images, $author)
 {
     global $conn;
 
     if (is_int($price) && $price > 0 && $price < 1000000) {
         try {
-            $sth = $conn->prepare('INSERT INTO adverts (title,content,address,city,price,author) VALUES (:title, :content, :address, :city, :price, :author)');
+            $sth = $conn->prepare('INSERT INTO adverts (title,content,address,city, price, images, author) VALUES (:title, :content, :address, :city, :price, :images, :author)');
             $sth->bindValue(':title', $title, PDO::PARAM_STR);
             $sth->bindValue(':content', $content, PDO::PARAM_STR);
             $sth->bindValue(':address', $address, PDO::PARAM_STR);
             $sth->bindValue(':city', $city, PDO::PARAM_STR);
             $sth->bindValue(':price', $price, PDO::PARAM_INT);
+            $sth->bindValue(':images', $images, PDO::PARAM_STR);
             $sth->bindValue(':author', $author, PDO::PARAM_INT);
 
             if ($sth->execute()) {
-                echo "<div class='alert alert-success'> Votre annonce a été ajouté à la base de données </div>";
-                header('Location: profil.php?');
+                echo '<div class="has-text-success"> Votre annonce a été ajouté à la base de données </div>';
             }
         } catch (PDOException $e) {
             echo 'Error: '.$e->getMessage();
         }
     }
+}
+
+function viewPlaces()
+{
+    global $conn;
+    $sth = $conn->prepare('SELECT * FROM adverts');
+    $sth->execute();
+
+    $adverts = $sth->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($adverts as $advert) {
+        ?>
+<tr>
+
+    <td><?php echo $advert['title']; ?>
+    </td>
+    <td><?php echo $advert['content']; ?>
+    </td>
+    <td><?php echo $advert['price']; ?>
+    </td>
+    <td><?php echo $advert['address']; ?>
+    </td>
+    <td><?php echo $advert['city']; ?>
+    </td>
+    <td> <a
+            href="place.php?id=<?php echo $advert['ad_id']; ?>">View
+            place</a>
+    </td>
+</tr>
+<?php
+    }
+}
+
+function viewPlace($id)
+{
+    global $conn;
+    $sth = $conn->prepare("SELECT * FROM adverts WHERE ad_id={$id}");
+    $sth->execute();
+
+    $advert = $sth->fetch(PDO::FETCH_ASSOC); ?>
+<div class="row">
+    <div class="col-12">
+        <h1><?php echo $advert['title']; ?>
+        </h1>
+        <p><?php echo $advert['content']; ?>
+        </p>
+        <p><?php echo $advert['address']; ?>
+        </p>
+        <p><?php echo $advert['city']; ?>
+        </p>
+        <button class="btn btn-danger"><?php echo $advert['price']; ?> </button>
+    </div>
+</div>
+<?php
 }

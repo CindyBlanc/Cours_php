@@ -11,29 +11,41 @@ $title = 'Post - Stuliday';
             <div class="field">
                 <label for="InputName" class="label">Title :</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="Text input" name="ad_name" required>
+                    <input class="input" type="text" name="ad_name" required>
                 </div>
             </div>
 
             <div class="field">
                 <label for="InputPrice" class="label">Price :</label>
                 <div class="control">
-                    <input class="input" type="number" placeholder="Price" name="ad_price" required>
+                    <input class="input" type="number" name="ad_price" required>
                 </div>
             </div>
 
             <div class="field">
                 <label for="InputDescription" class="label">Description :</label>
                 <div class="control">
-                    <textarea class="textarea" placeholder="Textarea" id="InputDescription" name="ad_description"
-                        required></textarea>
+                    <textarea class="textarea" id="InputDescription" name="ad_description" required></textarea>
                 </div>
             </div>
-            <!-- 
+
+            <div class="field">
+                <label for="InputAddress" class="label">Adress :</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Adress" name="ad_address" required>
+                </div>
+            </div>
+            <div class="field">
+                <label for="InputCity" class="label">City :</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="City" name="ad_city" required>
+                </div>
+            </div>
+
             <div class="field">
                 <div class="file is-medium has-name is-info">
                     <label class="file-label">
-                        <input class="file-input" type="file" name="resume">
+                        <input class="file-input" type="file" name="ad_images">
                         <span class="file-cta">
                             <span class="file-icon">
                                 <i class="fas fa-upload"></i>
@@ -47,23 +59,7 @@ $title = 'Post - Stuliday';
                         </span>
                     </label>
                 </div>
-            </div> -->
-
-            <div class="field">
-                <label for="InputAddress" class="label">Adress :</label>
-                <div class="control">
-                    <input class="input" type="text" placeholder="Adress" name="ad_city" required>
-                </div>
             </div>
-
-            <!-- <div class="field">
-                <div class="control">
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        I agree to the <a href="#">terms and conditions</a>
-                    </label>
-                </div>
-            </div> -->
 
             <div class="field is-grouped">
                 <div class="control">
@@ -75,6 +71,20 @@ $title = 'Post - Stuliday';
             </div>
     </div>
 </div>
+
+
+<!-- <div class="field">
+                <div class="control">
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        I agree to the <a href="#">terms and conditions</a>
+                    </label>
+                </div>
+            </div> -->
+
+
+<!-- 
+
 
 <?php
 require 'includes/footer.php';
