@@ -80,26 +80,26 @@ function viewPlaces()
     $sth = $conn->prepare('SELECT * FROM adverts');
     $sth->execute();
 
-    $adverts = $sth->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($adverts as $advert) {
-        ?>
-<tr>
+    $adverts = $sth->fetchAll(PDO::FETCH_ASSOC); ?>
 
-    <td><?php echo $advert['title']; ?>
-    </td>
-    <td><?php echo $advert['content']; ?>
-    </td>
-    <td><?php echo $advert['price']; ?>
-    </td>
-    <td><?php echo $advert['address']; ?>
-    </td>
-    <td><?php echo $advert['city']; ?>
-    </td>
-    <td> <a
-            href="place.php?id=<?php echo $advert['ad_id']; ?>">View
-            place</a>
-    </td>
-</tr>
+
+<?php foreach ($adverts as $advert) {
+        ?>
+
+<div class="column has-background-primary is-half
+
+">
+    <h4><?php echo $advert['title']; ?>
+    </h4>
+    <p><?php echo $advert['content']; ?>
+    </p>
+    <p><?php echo $advert['city']; ?>
+    </p>
+    <a
+        href="place.php?id=<?php echo $advert['ad_id']; ?>">View
+        place</a>
+
+</div>
 <?php
     }
 }
@@ -111,18 +111,16 @@ function viewPlace($id)
     $sth->execute();
 
     $advert = $sth->fetch(PDO::FETCH_ASSOC); ?>
-<div class="row">
-    <div class="col-12">
-        <h1><?php echo $advert['title']; ?>
-        </h1>
-        <p><?php echo $advert['content']; ?>
-        </p>
-        <p><?php echo $advert['address']; ?>
-        </p>
-        <p><?php echo $advert['city']; ?>
-        </p>
-        <button class="btn btn-danger"><?php echo $advert['price']; ?> </button>
-    </div>
+<div class="">
+    <h1><?php echo $advert['title']; ?>
+    </h1>
+    <p><?php echo $advert['content']; ?>
+    </p>
+    <p><?php echo $advert['address']; ?>
+    </p>
+    <p><?php echo $advert['city']; ?>
+    </p>
+    <button class="btn btn-danger"><?php echo $advert['price']; ?> </button>
 </div>
 <?php
 }

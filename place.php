@@ -4,9 +4,11 @@ require 'includes/header.php';
 ?>
 
 <div class="container">
-    <?php
+    <div class="row">
+        <?php
 viewPlace($_GET['id']);
 ?>
+    </div>
 </div>
 
 <?php
