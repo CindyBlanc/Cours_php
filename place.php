@@ -4,12 +4,18 @@ require 'includes/header.php';
 ?>
 
 <div class="container">
-    <div class="row">
-        <?php
+    <?php
 viewPlace($_GET['id']);
 ?>
+    <div>
+        <button class="button is-primary is-outlined" name="btnReserved">Book</button>
+        <a class="button is-danger is-outlined" href="places.php">Cancel</a>
     </div>
 </div>
+
+
+
+
 
 <?php
 require 'includes/footer.php';
