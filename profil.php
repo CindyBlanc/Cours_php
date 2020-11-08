@@ -2,31 +2,46 @@
 require 'includes/header.php';
 $title = 'Profil - Stuliday';
 
+$user_id = $_SESSION['id'];
+$sql = "SELECT * FROM users WHERE id = '{$user_id}'";
+$res = $conn->query($sql);
+$user = $res->fetch(PDO::FETCH_ASSOC);
+
+// if (isset($_GET['s'])) {
+//     echo '<div class="alert alert-warning">Votre article a bien été supprimé </div>';
+// } elseif (isset($_GET['p'])) {
+//     echo '<div class="alert alert-success">Votre numéro de téléphone à bien été mis à jour !</div>';
+// }
+
 ?>
 
 <div class="container">
     <div class="columns is-centered">
         <div class="column is-half">
-            <h3 class="title is-4 is-spaced">Your Profil</h3>
+            <h3 class="title is-4 is-spaced has-text-centered">Welcome <?php echo $user['username']; ?>
+            </h3>
 
             <div class="field">
                 <label class="label">Fullname</label>
                 <div class="control">
-                    <input class="input is-success" type="text">
+                    <input class="input is-success" type="text"
+                        value="<?php echo $user['username']; ?>">
                 </div>
             </div>
 
             <div class="field">
                 <label class="label">Email</label>
                 <div class="control has-icons-left has-icons-right">
-                    <input class="input is-success" type="text">
+                    <input class="input is-success" type="email"
+                        value="<?php echo $user['email']; ?>">
                 </div>
             </div>
 
             <div class="field">
                 <label class="label">Password</label>
                 <div class="control has-icons-left has-icons-right">
-                    <input class="input is-success" type="email">
+                    <input class="input is-success" type="password"
+                        value="<?php echo $user['password']; ?>">
                 </div>
             </div>
 

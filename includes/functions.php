@@ -113,17 +113,20 @@ function viewPlace($id)
 
     $advert = $sth->fetch(PDO::FETCH_ASSOC); ?>
 
-<h1 class="title is-4 is-spaced"><?php echo $advert['title']; ?>
+<h1 class="title is-4 is-spaced has-text-centered	"><?php echo $advert['title']; ?>
 </h1>
 <div class="columns">
-    <div class="column is-half
+    <div class="column is-one-fifth"></div>
+    <div class="column is-one-third
+
+
 
 ">
         <p><?php echo $advert['content']; ?>
         </p>
 
     </div>
-    <div class="column is-half
+    <div class="column is-one-fifth has-text-right	
 
 ">
         <p><?php echo $advert['address']; ?>

@@ -12,6 +12,8 @@
     </div>
 </footer>
 <script type="text/javascript" src="lib/main.js"></script>
+<script src="js/scripts.js"></script>
+
 </body>
 
 </html>

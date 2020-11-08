@@ -8,7 +8,7 @@ $title = 'Post - Stuliday';
     <div class="columns is-centered">
 
         <div class="column is-four-fifths">
-            <h3 class="title is-4 is-spaced">Add adverts</h3>
+            <h3 class="title is-4 is-spaced has-text-centered">Add adverts</h3>
             <form action="process.php" method="POST">
                 <div class="field">
                     <label for="InputName" class="label">Title :</label>
@@ -64,7 +64,7 @@ $title = 'Post - Stuliday';
                     </div>
                 </div>
 
-                <div class="field is-grouped">
+                <div class="field is-grouped ">
                     <div class="control">
                         <button class="button is-primary" name="ad_submit">Post</button>
                     </div>

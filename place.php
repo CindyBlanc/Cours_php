@@ -7,9 +7,33 @@ require 'includes/header.php';
     <?php
 viewPlace($_GET['id']);
 ?>
-    <div>
-        <button class="button is-primary is-outlined" name="btnReserved">Book</button>
+
+    <div class="has-text-centered">
+        <button class="btnBook button is-primary is-outlined modal-button" name="btnReserved" data-target="modal-ter"
+            aria-haspopup="true">Book</button>
         <a class="button is-danger is-outlined" href="places.php">Cancel</a>
+    </div>
+    <div id="modalBook" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">
+                    Do you really want to reserve this place ?
+                </p>
+                <button class="delete" aria-label="close"><a href="place.php"></a></button>
+
+            </header>
+            <section class="modal-card-body">
+                <input type="checkbox">
+                I agree to the <a href="#">terms and conditions</a>
+            </section>
+
+            <footer class="modal-card-foot">
+                <button class="button is-success">Yes, book !</button>
+                <button class="button">No thanks
+                </button>
+            </footer>
+        </div>
     </div>
 </div>
 
