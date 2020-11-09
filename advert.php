@@ -4,7 +4,7 @@ $title = 'Post - Stuliday';
 
 ?>
 
-<div class="container">
+<div class="container" style="margin-top: 10vh;">
     <div class="columns is-centered">
 
         <div class="column is-four-fifths">
@@ -92,3 +92,25 @@ $title = 'Post - Stuliday';
 
 <?php
 require 'includes/footer.php';
+
+// code de couliga
+// if (isset($_FILES['advert_images'])) {​​​​​​​
+//     $file = $_FILES['advert_images'];
+//     if ($file['size'] <= 1000000) {​​​​​​​
+//         $valid_ext = ['jpg', 'jpeg', 'gif', 'png'];
+//         $check_ext = strtolower(substr(strrchr($file['name'], '.'), 1));
+//         if (in_array($check_ext, $valid_ext)) {​​​​​​​
+//             $dbname = uniqid().'_'.$file['name'];
+//             $upload_dir = 'imgupload/';
+//             $upload_name = $upload_dir.$dbname;
+//             $move_result = move_uploaded_file($file['tmp_name'], $upload_name);
+//             $img = $dbname;
+//             echo '<div class="alert alert-success mt-2" role="alert" > You have Succesfully Upload your Image !</div>';
+//         }​​​​​​​ else {​​​​​​​
+//             // TEMP SPEECH FIND BETTER !!!
+//             $img = '';
+//             echo '<div class="alert alert-success mt-2" role="alert" > Upload Image Fail, please check the extension / size !</div>';
+//         }​​​​​​​
+//     }​​​​​​​
+// }​​​​​​​
+// $sth->bindValue(':images', $img, PDO::PARAM_STR);

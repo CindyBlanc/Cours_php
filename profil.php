@@ -15,7 +15,7 @@ $user = $res->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
-<div class="container">
+<div class="container" style="margin-top: 10vh;">
 
 
 
@@ -57,10 +57,12 @@ $user = $res->fetch(PDO::FETCH_ASSOC);
 
                 <div class="field is-grouped">
                     <div class="control">
+                        <input type="hidden"
+                            value="<?php echo $user['id']; ?>">
                         <input type="submit" class="button is-success" name="user_edit" value="Change">
                     </div>
                     <div class="control">
-                        <button class="button is-link is-light">Cancel</button>
+                        <button class="button is-link is-light"><a href="index.php"> Cancel</a></button>
 
 
                     </div>
@@ -74,9 +76,8 @@ $user = $res->fetch(PDO::FETCH_ASSOC);
             <table class="table table-warning">
                 <thead>
                     <tr>
-                        <th scope="col">id</th>
+                        <th scope="col">Advert</th>
                         <th scope="col">Title</th>
-                        <th scope="col">Description</th>
                         <th scope="col">Price</th>
                         <th scope="col">City</th>
                         <th scope="col" colspan=3>Fonctions</th>

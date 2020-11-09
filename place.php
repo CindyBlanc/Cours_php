@@ -3,11 +3,15 @@ $title = 'Fiche produit - Stuliday';
 require 'includes/header.php';
 ?>
 
-<div class="container">
+<div class="container" style="margin-top: 10vh;">
     <?php
 viewPlace($_GET['id']);
 ?>
-
+    <div class="image image is-228x128	
+	
+">
+        <img src="images/imgadverts/chalet.jpg" alt="chalet">
+    </div>
     <div class="has-text-centered">
         <button class="btnBook button is-primary is-outlined modal-button" data-target="modal-ter"
             aria-haspopup="true">Book</button>

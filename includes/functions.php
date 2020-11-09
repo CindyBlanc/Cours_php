@@ -57,7 +57,7 @@ function adAdverts($title, $content, $address, $city, $price, $images, $author)
 {
     global $conn;
 
-    if (is_int($price) && $price > 0 && $price < 1000000) {
+    if (is_int($price) && $price > 0 && $price < 10000000) {
         try {
             $sth = $conn->prepare('INSERT INTO adverts (title,content,address,city, price, images, author) VALUES (:title, :content, :address, :city, :price, :images, :author)');
             $sth->bindValue(':title', $title, PDO::PARAM_STR);
@@ -69,7 +69,8 @@ function adAdverts($title, $content, $address, $city, $price, $images, $author)
             $sth->bindValue(':author', $author, PDO::PARAM_INT);
 
             if ($sth->execute()) {
-                echo '<div class="has-text-success"> Votre annonce a été ajouté à la base de données </div>';
+                echo '<div class="has-text-success"> Votre annonce a été ajouté à la base de données </div>                         <button class="button is-link is-light"><a href="index.php"> Cancel</a></button>'
+                ;
             }
         } catch (PDOException $e) {
             echo 'Error: '.$e->getMessage();
@@ -92,11 +93,14 @@ function viewPlaces()
 <div class="column is-two-fifths is-offset-1">
     <h4 class="title is-5 is-spaced"><?php echo $advert['title']; ?>
     </h4>
-    <p><?php echo $advert['content']; ?>
-    </p>
-    <p><?php echo $advert['city']; ?>
-    </p>
-    <a class="button is-primary is-outlined"
+    <img src="images/plaza2.jpg" alt="plaza">
+    <div>
+        <p><?php echo $advert['content']; ?>
+        </p>
+        <p><?php echo $advert['city']; ?>
+        </p>
+    </div>
+    <a class="button is-primary is-outlined "
         href="place.php?id=<?php echo $advert['ad_id']; ?>">View
         place</a>
 
@@ -113,22 +117,15 @@ function viewPlace($id)
 
     $advert = $sth->fetch(PDO::FETCH_ASSOC); ?>
 
-<h1 class="title is-4 is-spaced has-text-centered	"><?php echo $advert['title']; ?>
+<h1 class="title is-4 is-spaced has-text-centered"><?php echo $advert['title']; ?>
 </h1>
 <div class="columns">
     <div class="column is-one-fifth"></div>
-    <div class="column is-one-third
-
-
-
-">
+    <div class="column is-one-third">
         <p><?php echo $advert['content']; ?>
         </p>
-
     </div>
-    <div class="column is-one-fifth has-text-right	
-
-">
+    <div class="column is-one-fifth has-text-right">
         <p><?php echo $advert['address']; ?>
         </p>
         <p><?php echo $advert['city']; ?>
@@ -154,8 +151,6 @@ function viewAdvertByUser($author)
     </th>
     <td><?php echo $advert['title']; ?>
     </td>
-    <td><?php echo $advert['content']; ?>
-    </td>
     <td><?php echo $advert['price']; ?> €
     </td>
     <td><?php echo $advert['city']; ?>
@@ -163,9 +158,13 @@ function viewAdvertByUser($author)
     <td> <a href="place.php?id=<?php echo $advert['ad_id']; ?>"
             class="fa button is-primary">View</a>
     </td>
+    <td> <a href="editadvert.php?id=<?php echo $advert['ad_id']; ?>"
+            class="fa button is-success">Edit</a>
+    </td>
     <td>
         <form action="process.php" method="post">
-
+            <input type="hidden" name="ad_id"
+                value="<?php echo $advert['ad_id']; ?>">
             <input type="submit" name="advert_delete" class="button is-danger" value="Delete"></input>
         </form>
     </td>
@@ -184,10 +183,52 @@ function changeProfil($username, $user_id)
         $sth->bindValue(':user_id', $user_id);
 
         if ($sth->execute()) {
-            // header('Location:profil.php?p');
+            header('Location:profil.php?p');
             echo '<div class="has-text-success"> Votre changement a été ajouté à la base de données </div>';
         }
     } catch (PDOException $e) {
         echo 'Error: '.$e->getMessage();
+    }
+}
+
+// Fonction de suppression des produits. Les arguments renseignés sont des placeholders étant donné qu'ils seront remplacés par les véritables variables une fois la fonction appelée;
+function deleteAdvert($user_id, $ad_id)
+{
+    // Récupération de la connexion à la BDD à partir de l'espace global.
+    global $conn;
+
+    // Tentative de la requête de suppression.
+    try {
+        $sth = $conn->prepare('DELETE FROM adverts WHERE ad_id = :ad_id AND author =:user_id');
+        $sth->bindValue(':ad_id', $ad_id);
+        $sth->bindValue(':user_id', $user_id);
+        if ($sth->execute()) {
+            header('Location:profil.php?s');
+        }
+    } catch (PDOException $e) {
+        echo 'Error: '.$e->getMessage();
+    }
+}
+
+function editAdvert($title, $content, $address, $city, $price, $images, $author)
+{
+    global $conn;
+    if (is_int($price) && $price > 0 && $price < 1000000) {
+        try {
+            $sth = $conn->prepare('INSERT INTO adverts (title,content,address,city, price, images, author) VALUES (:title, :content, :address, :city, :price, :images, :author)');
+            $sth->bindValue(':title', $title, PDO::PARAM_STR);
+            $sth->bindValue(':content', $content, PDO::PARAM_STR);
+            $sth->bindValue(':address', $address, PDO::PARAM_STR);
+            $sth->bindValue(':city', $city, PDO::PARAM_STR);
+            $sth->bindValue(':price', $price, PDO::PARAM_INT);
+            $sth->bindValue(':images', $images, PDO::PARAM_STR);
+            $sth->bindValue(':author', $author, PDO::PARAM_INT);
+            if ($sth->execute()) {
+                echo "<div class='alert alert-success'> Votre modification a bien été prise en compte </div>";
+                header("Location: profil.php?id={$id}");
+            }
+        } catch (PDOException $e) {
+            echo 'Error: '.$e->getMessage();
+        }
     }
 }

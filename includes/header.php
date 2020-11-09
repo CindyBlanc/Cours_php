@@ -12,10 +12,12 @@ require 'includes/functions.php';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Stuliday</title>
     <link rel="stylesheet" href="css/main.css">
+
 </head>
 
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+
+    <nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="index.php">
                 <img src="images/stuliday-logo-dark.png" width=50 height=50>
