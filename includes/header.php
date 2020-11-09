@@ -51,7 +51,7 @@ require 'includes/functions.php';
                         <?php echo $_SESSION['username']; ?>
                     </a>
 
-                    <div class="navbar-dropdown">
+                    <div class="navbar-dropdown is-right">
                         <a class="navbar-item" href="profil.php">
                             Profile page
                         </a>

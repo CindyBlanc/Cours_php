@@ -18,6 +18,10 @@
 
             adAdverts($title, $content, $address, $city, $price, $images, $author);
         }
+    } elseif (isset($_POST['user_edit'])) {
+        $username = $_POST['username'];
+
+        changeProfil($username, $user_id);
     }
 
 require 'includes/footer.php';

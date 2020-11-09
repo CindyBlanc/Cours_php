@@ -16,43 +16,56 @@ $user = $res->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <div class="container">
+
+
+
     <div class="columns is-centered">
         <div class="column is-half">
             <h3 class="title is-4 is-spaced has-text-centered">Welcome <?php echo $user['username']; ?>
             </h3>
+            <form action="process.php" method="post">
+                <div class="form-group">
 
-            <div class="field">
-                <label class="label">Fullname</label>
-                <div class="control">
-                    <input class="input is-success" type="text"
-                        value="<?php echo $user['username']; ?>">
-                </div>
-            </div>
+                    <div class="field">
+                        <label class="label">Fullname</label>
+                        <div class="control">
+                            <input class="input is-success" type="text"
+                                value="<?php echo $user['username']; ?>"
+                                name="username">
+                        </div>
+                    </div>
 
-            <div class="field">
-                <label class="label">Email</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input class="input is-success" type="email"
-                        value="<?php echo $user['email']; ?>">
-                </div>
-            </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input is-success" type="email"
+                                value="<?php echo $user['email']; ?>"
+                                name="email">
+                        </div>
+                    </div>
 
-            <div class="field">
-                <label class="label">Password</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input class="input is-success" type="password"
-                        value="<?php echo $user['password']; ?>">
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input is-success" type="password"
+                                value="<?php echo $user['password']; ?>"
+                                name="password">
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-link">Change</button>
+
+                <div class="field is-grouped">
+                    <div class="control">
+                        <input type="submit" class="button is-success" name="user_edit" value="Change">
+                    </div>
+                    <div class="control">
+                        <button class="button is-link is-light">Cancel</button>
+
+
+                    </div>
                 </div>
-                <div class="control">
-                    <button class="button is-link is-light">Cancel</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
     <div class="columns is-centered">
@@ -71,7 +84,7 @@ $user = $res->fetch(PDO::FETCH_ASSOC);
                 </thead>
                 <tbody>
                     <?php
-        viewAdvertByUser($author);
+        viewAdvertByUser($user_id);
         ?>
                 </tbody>
             </table>

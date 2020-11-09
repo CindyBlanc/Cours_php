@@ -1,7 +1,8 @@
-$(function () {
+$(document).ready(function () {
     $(".btnBook").click(function(){
-        $("#modalBook").addClass("is-active");
+        $("#modalBook").toggleClass("is-active");
     });
-})
+    console.log(ok);
+});
 
 

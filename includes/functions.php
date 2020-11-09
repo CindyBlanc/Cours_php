@@ -89,7 +89,7 @@ function viewPlaces()
 <?php foreach ($adverts as $advert) {
         ?>
 
-<div class="column is-two-fifths">
+<div class="column is-two-fifths is-offset-1">
     <h4 class="title is-5 is-spaced"><?php echo $advert['title']; ?>
     </h4>
     <p><?php echo $advert['content']; ?>
@@ -143,14 +143,14 @@ function viewPlace($id)
 function viewAdvertByUser($author)
 {
     global $conn;
-    $sth = $conn->prepare("SELECT * FROM adverts LEFT JOIN users= adverts.author WHERE author={$author}");
+    $sth = $conn->prepare("SELECT * FROM adverts INNER JOIN users ON id = author WHERE author = {$author}");
     $sth->execute();
 
     $adverts = $sth->fetchAll(PDO::FETCH_ASSOC);
     foreach ($adverts as $advert) {
         ?>
 <tr>
-    <th scope="row"><?php echo $adverts['ad_id']; ?>
+    <th scope="row"><?php echo $advert['ad_id']; ?>
     </th>
     <td><?php echo $advert['title']; ?>
     </td>
@@ -161,16 +161,33 @@ function viewAdvertByUser($author)
     <td><?php echo $advert['city']; ?>
     </td>
     <td> <a href="place.php?id=<?php echo $advert['ad_id']; ?>"
-            class="fa btn btn-outline-primary"><i class="fas fa-eye"></i></a>
+            class="fa button is-primary">View</a>
     </td>
     <td>
         <form action="process.php" method="post">
-            <input type="hidden" name="ad_id"
-                value="<?php echo $product['ad_id']; ?>">
-            <input type="submit" name="advert_delete" class="fa btn btn-outline-danger" value="&#xf2ed;"></input>
+
+            <input type="submit" name="advert_delete" class="button is-danger" value="Delete"></input>
         </form>
     </td>
 </tr>
 <?php
+    }
+}
+
+function changeProfil($username, $user_id)
+{
+    global $conn;
+
+    try {
+        $sth = $conn->prepare('UPDATE users SET username=:username WHERE id=:user_id');
+        $sth->bindValue(':username', $username);
+        $sth->bindValue(':user_id', $user_id);
+
+        if ($sth->execute()) {
+            // header('Location:profil.php?p');
+            echo '<div class="has-text-success"> Votre changement a été ajouté à la base de données </div>';
+        }
+    } catch (PDOException $e) {
+        echo 'Error: '.$e->getMessage();
     }
 }

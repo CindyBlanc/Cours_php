@@ -9,7 +9,7 @@ viewPlace($_GET['id']);
 ?>
 
     <div class="has-text-centered">
-        <button class="btnBook button is-primary is-outlined modal-button" name="btnReserved" data-target="modal-ter"
+        <button class="btnBook button is-primary is-outlined modal-button" data-target="modal-ter"
             aria-haspopup="true">Book</button>
         <a class="button is-danger is-outlined" href="places.php">Cancel</a>
     </div>
@@ -20,7 +20,6 @@ viewPlace($_GET['id']);
                 <p class="modal-card-title">
                     Do you really want to reserve this place ?
                 </p>
-                <button class="delete" aria-label="close"><a href="place.php"></a></button>
 
             </header>
             <section class="modal-card-body">
@@ -29,8 +28,8 @@ viewPlace($_GET['id']);
             </section>
 
             <footer class="modal-card-foot">
-                <button class="button is-success">Yes, book !</button>
-                <button class="button">No thanks
+                <button class="button is-success" name="btnReserved">Yes, book !</button>
+                <button class="btnBook button">No thanks
                 </button>
             </footer>
         </div>
