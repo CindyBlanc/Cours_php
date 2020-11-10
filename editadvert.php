@@ -4,6 +4,9 @@ $title = 'Modification du produit - Le Chouette Coin';
 require 'includes/header.php';
 
 $id = $_GET['id'];
+$sql = "SELECT * FROM adverts WHERE ad_id={$id}";
+$res = $conn->query($sql);
+$advert = $res->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -18,7 +21,7 @@ $id = $_GET['id'];
                     <div class="control">
                         <input class="input is-primary" type="text"
                             value="<?php echo $advert['title']; ?>"
-                            name="changeTitle" required required>
+                            name="edit_title" required required>
                     </div>
                 </div>
 
@@ -59,7 +62,7 @@ $id = $_GET['id'];
                 <div class="field">
                     <div class="file is-medium has-name is-primary">
                         <label class="file-label">
-                            <input class="file-input" type="file" name="ad_images">
+                            <input class="file-input" type="file" name="edit_images" value="images.jpg">
                             <span class="file-cta">
                                 <span class="file-icon">
                                     <i class="fas fa-upload"></i>
@@ -77,6 +80,8 @@ $id = $_GET['id'];
 
                 <div class="field is-grouped ">
                     <div class="control">
+                        <input type="hidden" name="edit_id"
+                            value="<?php echo $advert['ad_id']; ?>">
                         <button class="button is-primary" name="edit_advert">Change</button>
                     </div>
                     <div class="control">

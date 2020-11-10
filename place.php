@@ -7,11 +7,31 @@ require 'includes/header.php';
     <?php
 viewPlace($_GET['id']);
 ?>
-    <div class="image image is-228x128	
-	
-">
-        <img src="images/imgadverts/chalet.jpg" alt="chalet">
+    <div class="columns is-multiline">
+        <div class="column">
+
+            <figure class="image is-228x228">
+                <img src="images/imgadverts/chalet.jpg" alt="chalet">
+            </figure>
+        </div>
+        <div class="column">
+            <figure class="image is-228x228">
+                <img src="images/imgadverts/maisonneige.jpg" alt="int">
+            </figure>
+        </div>
+        <div class="column">
+            <figure class="image is-228x228">
+                <img src="images/imgadverts/interieur1.jpg" alt="int">
+            </figure>
+        </div>
+        <div class="column">
+            <figure class="image is-228x228">
+                <img src="images/imgadverts/interieur2.jpg" alt="int">
+            </figure>
+        </div>
+
     </div>
+
     <div class="has-text-centered">
         <button class="btnBook button is-primary is-outlined modal-button" data-target="modal-ter"
             aria-haspopup="true">Book</button>
@@ -32,9 +52,15 @@ viewPlace($_GET['id']);
             </section>
 
             <footer class="modal-card-foot">
-                <button class="button is-success" name="btnReserved">Yes, book !</button>
-                <button class="btnBook button">No thanks
-                </button>
+                <form action="process.php" method="post">
+
+                    <input type="hidden" name="book_id"
+                        value="<?php $_GET['id']; ?>">
+                    <button type="submit" class="button is-success" name="book_submit" href="book.php">Yes, book
+                        !</button>
+                </form>
+                <a class="btnBook button">No thanks
+                </a>
             </footer>
         </div>
     </div>

@@ -17,7 +17,7 @@ require 'includes/functions.php';
 
 <body>
 
-    <nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
+    <nav class="navbar" style="background-color: #113C61;" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="index.php">
                 <img src="images/stuliday-logo-dark.png" width=50 height=50>
@@ -33,11 +33,11 @@ require 'includes/functions.php';
 
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item" href="index.php">
+                <a class="navbar-item" href="index.php" style="color: #AE8441;">
                     Home
                 </a>
 
-                <a class="navbar-item" href="places.php">
+                <a class="navbar-item" href="places.php" style="color: #AE8441;">
                     Places to stay
                 </a>
 
@@ -49,19 +49,19 @@ require 'includes/functions.php';
             if (!empty($_SESSION)) {
                 ?>
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
+                    <a class="navbar-link" style="color: #AE8441;">
                         <?php echo $_SESSION['username']; ?>
                     </a>
 
                     <div class="navbar-dropdown is-right">
-                        <a class="navbar-item" href="profil.php">
+                        <a class="navbar-item" href="profil.php" style="color: #AE8441;">
                             Profile page
                         </a>
-                        <a class="navbar-item" href="advert.php">
+                        <a class="navbar-item" href="advert.php" style="color: #AE8441;">
                             Create a new ad
                         </a>
                         <hr class="navbar-divider">
-                        <a class="navbar-item" href="?logout">
+                        <a class="navbar-item" href="?logout" style="color: #AE8441;">
                             Disconnect
                         </a>
                     </div>

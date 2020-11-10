@@ -21,5 +21,3 @@ $title = 'Accueil - Stuliday';
     </div>
   </div>
 </section>
-<?php
-require 'includes/footer.php';

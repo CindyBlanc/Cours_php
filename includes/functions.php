@@ -44,7 +44,7 @@ function connexion($email_login, $pass_login)
             $_SESSION['id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
 
-            header('Location: index.php?');
+            header('Location: profil.php?');
         } else {
             echo '<div class="notification is-danger is-light"><button class="delete"></button>Mot de passe erroné !</div>';
         }
@@ -210,12 +210,12 @@ function deleteAdvert($user_id, $ad_id)
     }
 }
 
-function editAdvert($title, $content, $address, $city, $price, $images, $author)
+function editAdvert($title, $content, $address, $city, $price, $images, $author, $id)
 {
     global $conn;
     if (is_int($price) && $price > 0 && $price < 1000000) {
         try {
-            $sth = $conn->prepare('INSERT INTO adverts (title,content,address,city, price, images, author) VALUES (:title, :content, :address, :city, :price, :images, :author)');
+            $sth = $conn->prepare('UPDATE adverts SET title=:title,content=:content,address=:address,city=:city,price=:price, images=:images,author=:author WHERE ad_id=:ad_id');
             $sth->bindValue(':title', $title, PDO::PARAM_STR);
             $sth->bindValue(':content', $content, PDO::PARAM_STR);
             $sth->bindValue(':address', $address, PDO::PARAM_STR);
@@ -223,6 +223,7 @@ function editAdvert($title, $content, $address, $city, $price, $images, $author)
             $sth->bindValue(':price', $price, PDO::PARAM_INT);
             $sth->bindValue(':images', $images, PDO::PARAM_STR);
             $sth->bindValue(':author', $author, PDO::PARAM_INT);
+            $sth->bindValue(':ad_id', $id, PDO::PARAM_INT);
             if ($sth->execute()) {
                 echo "<div class='alert alert-success'> Votre modification a bien été prise en compte </div>";
                 header("Location: profil.php?id={$id}");
@@ -230,5 +231,24 @@ function editAdvert($title, $content, $address, $city, $price, $images, $author)
         } catch (PDOException $e) {
             echo 'Error: '.$e->getMessage();
         }
+    }
+}
+
+function bookAdvert($book_id, $user_id)
+{
+    global $conn;
+    $book_name = 'reservation n°'.random_int(1, 1000000);
+
+    try {
+        $sth = $conn->prepare('INSERT INTO book (book_name, book_adverts_id, book_user_id) VALUES (:book_name, :book_adverts_id, :book_user_id)');
+        $sth->bindValue(':book_name', $book_name);
+        $sth->bindValue(':book_adverts_id', $book_id);
+        $sth->bindValue(':book_user_id', $user_id);
+        if ($sth->execute()) {
+            echo "<div class='alert alert-success'> Votre réservation a bien été prise en compte </div>";
+            header('Location: book.php');
+        }
+    } catch (Exception $e) {
+        echo 'Error: '.$e->getMessage();
     }
 }

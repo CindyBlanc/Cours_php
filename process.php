@@ -19,17 +19,20 @@
             adAdverts($title, $content, $address, $city, $price, $images, $author);
         }
     } elseif (isset($_POST['edit_advert'])) {
-        if (!empty($_POST['ad_name']) && !empty($_POST['ad_price']) && !empty($_POST['ad_description']) && !empty($_POST['ad_address']) && !empty($_POST['ad_city']) && !empty(['ad_images'])) {
-            $title = strip_tags($_POST['ad_name']);
-            $content = strip_tags($_POST['ad_description']);
-            $price = intval(strip_tags($_POST['ad_price']));
-            $address = strip_tags($_POST['ad_address']);
-            $city = strip_tags($_POST['ad_city']);
-            $images = strip_tags($_POST['ad_images']);
-
+        echo 'Bouton ok';
+        var_dump($_POST);
+        if (!empty($_POST['edit_title']) && !empty($_POST['edit_price']) && !empty($_POST['edit_content']) && !empty($_POST['edit_address']) && !empty($_POST['edit_city'])) {
+            echo 'if ok';
+            $title = strip_tags($_POST['edit_title']);
+            $content = strip_tags($_POST['edit_content']);
+            $price = intval(strip_tags($_POST['edit_price']));
+            $address = strip_tags($_POST['edit_address']);
+            $city = strip_tags($_POST['edit_city']);
+            $images = strip_tags($_POST['edit_images']);
+            $id = strip_tags($_POST['edit_id']);
             $author = $_SESSION['id'];
 
-            editAdvert($title, $content, $address, $city, $price, $images, $author);
+            editAdvert($title, $content, $address, $city, $price, $images, $author, $id);
         }
     } elseif (isset($_POST['advert_delete'])) {
         $advert = $_POST['ad_id'];
@@ -41,6 +44,9 @@
         $user_id = $_SESSION['id'];
 
         changeProfil($username, $user_id);
-    }
+    } elseif (isset($_POST['book_submit'])) {
+        $user_id = $_SESSION['id'];
+        $book_id = $_POST['book_id'];
 
-require 'includes/footer.php';
+        bookAdvert($book_id, $user_id);
+    }

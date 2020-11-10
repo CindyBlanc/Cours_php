@@ -46,7 +46,7 @@ $title = 'Post - Stuliday';
                 </div>
 
                 <div class="field">
-                    <div class="file is-medium has-name is-primary">
+                    <div class="file has-name is-right is-primary">
                         <label class="file-label">
                             <input class="file-input" type="file" name="ad_images">
                             <span class="file-cta">
@@ -54,7 +54,7 @@ $title = 'Post - Stuliday';
                                     <i class="fas fa-upload"></i>
                                 </span>
                                 <span class="file-label">
-                                    File…
+                                    Choose a file…
                                 </span>
                             </span>
                             <span class="file-name">
@@ -63,6 +63,8 @@ $title = 'Post - Stuliday';
                         </label>
                     </div>
                 </div>
+
+
 
                 <div class="field is-grouped ">
                     <div class="control">
@@ -77,37 +79,21 @@ $title = 'Post - Stuliday';
 </div>
 
 
-<!-- <div class="field">
-                <div class="control">
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        I agree to the <a href="#">terms and conditions</a>
-                    </label>
-                </div>
-            </div> -->
-
-
-<!-- 
-
-
 <?php
 require 'includes/footer.php';
 
-// code de couliga
-// if (isset($_FILES['advert_images'])) {​​​​​​​
-//     $file = $_FILES['advert_images'];
-//     if ($file['size'] <= 1000000) {​​​​​​​
+// if (!empty($images')) {​​​​​​​
+//     if ($images['size'] <= 1000000) {​​​​​​​
 //         $valid_ext = ['jpg', 'jpeg', 'gif', 'png'];
-//         $check_ext = strtolower(substr(strrchr($file['name'], '.'), 1));
+//         $check_ext = strtolower(substr(strrchr($images['name'], '.'), 1));
 //         if (in_array($check_ext, $valid_ext)) {​​​​​​​
-//             $dbname = uniqid().'_'.$file['name'];
-//             $upload_dir = 'imgupload/';
+//             $dbname = uniqid().'_'.$images['name'];
+//             $upload_dir = 'assets/uploads/ad_images';
 //             $upload_name = $upload_dir.$dbname;
-//             $move_result = move_uploaded_file($file['tmp_name'], $upload_name);
+//             $move_result = move_uploaded_file($images['tmp_name'], $upload_name);
 //             $img = $dbname;
 //             echo '<div class="alert alert-success mt-2" role="alert" > You have Succesfully Upload your Image !</div>';
 //         }​​​​​​​ else {​​​​​​​
-//             // TEMP SPEECH FIND BETTER !!!
 //             $img = '';
 //             echo '<div class="alert alert-success mt-2" role="alert" > Upload Image Fail, please check the extension / size !</div>';
 //         }​​​​​​​
